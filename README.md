@@ -1,3 +1,3 @@
-# ApplePie
+# ApplePie charts for SwiftUI
 
-A description of this package.
+Simple and fast pie and donut charts generator for SwiftUI.
