@@ -25,7 +25,7 @@ struct APClipShape: Shape {
             
             p.addArc(
                 center: center,
-                radius: size / 2,
+                radius: size / 2.1,
                 startAngle: Angle(degrees: 360),
                 endAngle: Angle(degrees: 0),
                 clockwise: true
