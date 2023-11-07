@@ -16,22 +16,35 @@ internal struct APChartView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                ForEach(data) { piece in
-                    if let startDegree = piece.startDegree, let endDegree = piece.endDegree {
-                        APChartSectorView(
-                            startDegree: startDegree,
-                            endDegree: endDegree,
-                            piece: piece, 
-                            separators: separators,
-                            animationType: animationType,
-                            animation: animation
-                        )
+                if !data.isEmpty {
+                    ForEach(data) { piece in
+                        if let startDegree = piece.startDegree,
+                           let endDegree = piece.endDegree {
+                            APChartSectorView(
+                                startDegree: startDegree,
+                                endDegree: endDegree,
+                                piece: piece,
+                                separators: separators,
+                                animationType: animationType,
+                                animation: animation
+                            )
+                        }
                     }
+                } else {
+                    APChartSectorView(
+                        startDegree: 0,
+                        endDegree: 360,
+                        piece: .init(1, .secondary),
+                        separators: 0,
+                        animationType: animationType,
+                        animation: animation
+                    )
                 }
+                
             }
             .rotationEffect(Angle(degrees: 270))
+            .scaleEffect(1.2)
             .clipShape(APClipShape(innerRadius: innerRadius))
-            .scaleEffect(1.05)
         }
         .frame(width: width, height: height)
     }
