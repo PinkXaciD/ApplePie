@@ -31,6 +31,7 @@ internal struct APChartView: View {
             }
             .rotationEffect(Angle(degrees: 270))
             .clipShape(APClipShape(innerRadius: innerRadius))
+            .scaleEffect(1.05)
         }
         .frame(width: width, height: height)
     }
