@@ -25,8 +25,28 @@ struct APChartSectorShape: Shape {
                 var x: CGFloat = rect.midX
                 var y: CGFloat = rect.midY
                 
+                let angle = endDegree - startDegree
+                
+                var countAngle: Double {
+                    if angle < 180 {
+                        return angle
+                    } else if angle == 360 {
+                        return 1
+                    } else {
+                        return 360-angle
+                    }
+                }
+                
+                var size: CGFloat {
+                    if rect.height > rect.width {
+                        return rect.width/100
+                    } else {
+                        return rect.height/100
+                    }
+                }
+                
                 let degree = startDegree + (endDegree - startDegree) / 2
-                centerRadius = separators * (360 / (endDegree - startDegree)) * (rect.height > rect.width ? rect.width/100 : rect.height/100)
+                centerRadius = angle != 360 ? (separators * size) * (360 / countAngle) : 0
                 
                 switch degree {
                 case 0..<90:
