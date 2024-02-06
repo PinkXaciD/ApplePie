@@ -1,4 +1,4 @@
-# ``APChart/init(size:separators:innerRadius:data:)-8xqn7``
+# ``APChart/init(separators:innerRadius:data:)-35etn``
 
 @Metadata {
     @DocumentationExtension(mergeBehavior: append)
@@ -39,9 +39,9 @@ var chartData: [APChartSectorData] = bakeries.map {
 Then you can pass your variable to initializer
 
 ```swift
-APChart(size: CGSize(height: 300, width: 300), data: chartData)
+APChart(data: chartData)
 ```
 
-Alternatively, you can do the conversions inside of the initializer with ``APChart/init(size:separators:innerRadius:data:)-7vg13``
+Alternatively, you can do the conversions inside of the initializer with ``APChart/init(separators:innerRadius:data:)-16qxq``
 
 ## Topics

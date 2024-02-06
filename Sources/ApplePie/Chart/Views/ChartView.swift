@@ -9,52 +9,47 @@ import SwiftUI
 
 internal struct APChartView: View {
     private let data: [APChartSectorData]
-    private let height, width, separators, innerRadius: CGFloat
+    private let separators, innerRadius: CGFloat
     private let animation: Animation
     private let animationType: APAppearanceEffect
     
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                if !data.isEmpty {
-                    ForEach(data) { piece in
-                        if let startDegree = piece.startDegree,
-                           let endDegree = piece.endDegree {
-                            APChartSectorView(
-                                startDegree: startDegree,
-                                endDegree: endDegree,
-                                piece: piece,
-                                separators: separators,
-                                animationType: animationType,
-                                animation: animation
-                            )
-                        }
+        ZStack {
+            if !data.isEmpty {
+                ForEach(data) { piece in
+                    if let startDegree = piece.startDegree,
+                       let endDegree = piece.endDegree {
+                        APChartSectorView(
+                            startDegree: startDegree,
+                            endDegree: endDegree,
+                            piece: piece,
+                            separators: separators,
+                            animationType: animationType,
+                            animation: animation
+                        )
                     }
-                } else {
-                    APChartSectorView(
-                        startDegree: 0,
-                        endDegree: 360,
-                        piece: .init(1, .secondary),
-                        separators: 0,
-                        animationType: animationType,
-                        animation: animation
-                    )
                 }
-                
+            } else {
+                APChartSectorView(
+                    startDegree: 0,
+                    endDegree: 360,
+                    piece: .init(1, .secondary),
+                    separators: 0,
+                    animationType: animationType,
+                    animation: animation
+                )
             }
-            .rotationEffect(Angle(degrees: 270))
-            .scaleEffect(1.2)
-            .clipShape(APClipShape(innerRadius: innerRadius))
+            
         }
-        .frame(width: width, height: height)
+        .rotationEffect(Angle(degrees: 270))
+        .scaleEffect(2)
+        .clipShape(APClipShape(innerRadius: innerRadius))
     }
 }
 
 extension APChartView {
     internal init(
         data: [APChartSectorData],
-        height: CGFloat,
-        width: CGFloat,
         separators: CGFloat,
         innerRadius: CGFloat,
         animationType: APAppearanceEffect,
@@ -62,8 +57,6 @@ extension APChartView {
     ) {
         var tempData: [APChartSectorData] = data
         let allData: Double = data.map { $0.value }.reduce(0, +)
-        self.height = height
-        self.width = width
         self.separators = separators
         self.animationType = animationType
         self.animation = animation
@@ -84,8 +77,6 @@ extension APChartView {
     internal init(oldData: APChart, animationType: APAppearanceEffect, animation: Animation) {
         self.init(
             data: oldData.data,
-            height: oldData.height,
-            width: oldData.width,
             separators: oldData.separators,
             innerRadius: oldData.innerRadius,
             animationType: animationType,
