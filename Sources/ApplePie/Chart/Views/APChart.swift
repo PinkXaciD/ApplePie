@@ -8,23 +8,28 @@
 import SwiftUI
 
 /// A SwiftUI view that displays an ApplePie chart.
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, macCatalyst 13.0, *)
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, *)
 public struct APChart: View {
     internal let data: [APChartSectorData]
-    internal let height, width, separators, innerRadius: CGFloat
+    internal let height, width: CGFloat?
+    internal let separators, innerRadius: CGFloat
     private let animationType: APAppearanceEffect
     private let animation: Animation
     
     public var body: some View {
-        APChartView(
-            data: data,
-            height: height,
-            width: width,
-            separators: separators,
-            innerRadius: innerRadius,
-            animationType: animationType,
-            animation: animation
-        )
+        GeometryReader { geometry in
+            let trueWidth: CGFloat = width ?? geometry.size.width
+            let trueHeight: CGFloat = height ?? geometry.size.height
+            
+            APChartView(
+                data: data,
+                separators: separators,
+                innerRadius: innerRadius,
+                animationType: animationType,
+                animation: animation
+            )
+            .frame(width: trueWidth, height: trueHeight)
+        }
     }
 }
 
@@ -54,6 +59,7 @@ extension APChart {
     ///   - separators: Thickness of blank space between chart sections. It is recommended to use values less than 1, otherwise it may lead to unexpected results such as missing sectors.
     ///   - innerRadius: The radius of the inner circle of the chart relative to the chart size in a `CGFloat` value from 0 to 1, where 1 is a radius of entire chart.
     ///   - data: Array of ``APChartSectorData``.
+    @available(*, deprecated, message: "Use init(separators:innerRadius:data:) with .frame() modifier instead")
     public init(
         size: CGSize,
         separators: CGFloat = 0,
@@ -75,6 +81,7 @@ extension APChart {
     ///   - separators: Thickness of blank space between chart sections. It is recommended to use values less than 1, otherwise it may lead to unexpected results such as missing sectors.
     ///   - innerRadius: The radius of the inner circle of the chart relative to the chart size in a `CGFloat` value from 0 to 1, where 1 is a radius of entire chart.
     ///   - data: Closure, that returns array of ``APChartSectorData``.
+    @available(*, deprecated, message: "Use init(separators:innerRadius:data:) with .frame() modifier instead")
     public init(
         size: CGSize,
         separators: CGFloat = 0,
@@ -84,6 +91,44 @@ extension APChart {
         self.data = data()
         self.height = size.height
         self.width = size.width
+        self.separators = separators
+        self.innerRadius = innerRadius
+        self.animationType = .none
+        self.animation = .default
+    }
+    
+    /// Creates an ApplePie chart with given array of data
+    /// - Parameters:
+    ///   - separators: Thickness of blank space between chart sections. It is recommended to use values less than 1, otherwise it may lead to unexpected results such as missing sectors.
+    ///   - innerRadius: The radius of the inner circle of the chart relative to the chart size in a `CGFloat` value from 0 to 1, where 1 is a radius of entire chart.
+    ///   - data: Array of ``APChartSectorData``.
+    public init(
+        separators: CGFloat = 0,
+        innerRadius: CGFloat = 0,
+        data: [APChartSectorData]
+    ) {
+        self.data = data
+        self.height = nil
+        self.width = nil
+        self.separators = separators
+        self.innerRadius = innerRadius
+        self.animationType = .none
+        self.animation = .default
+    }
+    
+    /// Creates an ApplePie chart with array of data from given closure
+    /// - Parameters:
+    ///   - separators: Thickness of blank space between chart sections. It is recommended to use values less than 1, otherwise it may lead to unexpected results such as missing sectors.
+    ///   - innerRadius: The radius of the inner circle of the chart relative to the chart size in a `CGFloat` value from 0 to 1, where 1 is a radius of entire chart.
+    ///   - data: Closure, that returns array of ``APChartSectorData``.
+    public init(
+        separators: CGFloat = 0,
+        innerRadius: CGFloat = 0,
+        data: () -> [APChartSectorData]
+    ) {
+        self.data = data()
+        self.height = nil
+        self.width = nil
         self.separators = separators
         self.innerRadius = innerRadius
         self.animationType = .none

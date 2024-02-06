@@ -3,7 +3,6 @@
 @Metadata {
     @Available(macOS, introduced: "10.15")
     @Available(iOS, introduced: "13.0")
-    @Available(macCatalyst, introduced: "13.0")
     @Available(tvOS, introduced: "13.0")
 }
 
@@ -21,8 +20,8 @@ This package creates pie and donut charts for user-understandable representation
 
 ### Creating charts
 
-- ``APChart/init(size:separators:innerRadius:data:)-8xqn7``
-- ``APChart/init(size:separators:innerRadius:data:)-7vg13``
+- ``APChart/init(separators:innerRadius:data:)-35etn``
+- ``APChart/init(separators:innerRadius:data:)-16qxq``
 
 ### Animating charts
 

@@ -10,9 +10,14 @@ A SwiftUI view that displays an ApplePie chart.
 
 ### Creating chart
 
-- ``init(size:separators:innerRadius:data:)-8xqn7``
-- ``init(size:separators:innerRadius:data:)-7vg13``
+- ``init(separators:innerRadius:data:)-35etn``
+- ``init(separators:innerRadius:data:)-16qxq``
 
 ### Animating chart
 
 - ``appearanceEffect(effect:animation:)``
+
+### Deprecated
+
+- ``init(size:separators:innerRadius:data:)-8xqn7``
+- ``init(size:separators:innerRadius:data:)-7vg13``

@@ -3,8 +3,7 @@
 This package creates pie and donut charts for user-understandable representation of your data. Written in Swift using SwiftUI and CoreGraphics frameworks.
 
 ![iOS 13.0+ Badge](https://img.shields.io/badge/iOS-13.0%2B-white?labelColor=black) 
-![macOS 10.15+ Badge](https://img.shields.io/badge/macOS-10.15%2B-white?labelColor=black) 
-![Mac Catalyst 13.0+ Badge](https://img.shields.io/badge/Mac%20Catalyst-13.0%2B-white?labelColor=black)
+![macOS 10.15+ Badge](https://img.shields.io/badge/macOS-10.15%2B-white?labelColor=black)
 ![tvOS 13.0+ Badge](https://img.shields.io/badge/tvOS-13.0%2B-white?labelColor=black)
 
 ## Why ApplePie?
@@ -32,7 +31,7 @@ import ApplePie
 Then add `APChart` to your view.
 
 ```swift
-APChart(size: CGSize(width: 300, height: 300)) {
+APChart {
     // Your data
 }
 ```
@@ -60,7 +59,7 @@ let bakeries: [Bakery] = [
 You will need to convert your data into array of chart sector data with value and fill color.
 
 ```swift
-APChart(size: CGSize(width: 300, height: 300)) {
+APChart {
     bakeries.map { APChartSectorData($0.pieCount, $0.color) }
 }
 ```
@@ -71,7 +70,6 @@ Then you can customize it: add inner radius and/or separators.
 
 ```swift
 APChart(
-    size: CGSize(width: 300, height: 300), 
     separators: 0.5, 
     innerRadius: 0.7
 ) {...}
