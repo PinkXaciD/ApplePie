@@ -1,9 +1,11 @@
 # ``ApplePie``
 
 @Metadata {
-    @Available(macOS, introduced: "10.15")
     @Available(iOS, introduced: "13.0")
+    @Available(iPadOS, introduced: "13.0")
+    @Available(macOS, introduced: "10.15")
     @Available(tvOS, introduced: "13.0")
+    @Available(watchOS, introduced: "6.0")
 }
 
 Create pie and donut charts
@@ -14,21 +16,15 @@ This package creates pie and donut charts for user-understandable representation
 
 ## Topics
 
+### Creating charts
+
+- ``APChart``
+
 ### Views
 
 - ``APChart``
 
-### Creating charts
-
-- ``APChart/init(separators:innerRadius:data:)-35etn``
-- ``APChart/init(separators:innerRadius:data:)-16qxq``
-
-### Animating charts
-
-- ``APChart/appearanceEffect(effect:animation:)``
-
 ### Data structures
 
-- ``APChartSectorData``
-- ``APAppearanceEffect``
+- ``APChartSector``
 

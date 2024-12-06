@@ -25,21 +25,11 @@ struct APClipShape: Shape {
             
             p.addArc(
                 center: center,
-                radius: size / 2,
+                radius: size,
                 startAngle: Angle(degrees: 360),
                 endAngle: Angle(degrees: 0),
                 clockwise: true
             )
-        }
-    }
-    
-    init(innerRadius: CGFloat) {
-        if innerRadius > 1 {
-            self.innerRadius = 1
-        } else if innerRadius < 0 {
-            self.innerRadius = 0
-        } else {
-            self.innerRadius = innerRadius
         }
     }
 }
